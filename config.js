@@ -24,4 +24,6 @@ module.exports = {
         tradelink: "https://steamcommunity.com/tradeoffer/new/?partner=202877252&token=04S9nN_6"
     },
     gameCode : 559650,
+    currentlyPlaying : 730,
+    gameName : "Enter the name of currently playing game here",
 }

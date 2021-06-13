@@ -7,6 +7,7 @@ const SteamAccountCredentials = require('./utils/SteamAccountCredentials.js');
 const SteamTradeOffer = require('./response_models/SteamTradeOffer.js');
 const TradeOfferManager = require('steam-tradeoffer-manager');
 var config = require('./config.js');
+const { currentlyPlaying } = require('./config.js');
 
 const mainClient = new SteamUser();
 const botClient = new SteamUser();
@@ -69,10 +70,14 @@ try {
 
 account1.getClient().on('loggedOn', () => {
    account1.printMessage('Logged in!');
+   account1.getClient().setPersona(SteamUser.EPersonaState.LookingToTrade);
+   account1.getClient().gamesPlayed([config.gameName,currentlyPlaying]);
 });
 
 account2.getClient().on('loggedOn', () => {
    account2.printMessage('Logged in!');
+   account2.getClient().setPersona(SteamUser.EPersonaState.LookingToTrade);
+   account2.getClient().gamesPlayed([config.gameName,config.currentlyPlaying]);
 });
 
 account2.getClient().on('webSession', async function(sessionID, cookies) {
